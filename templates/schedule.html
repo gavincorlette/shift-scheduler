@@ -21,16 +21,20 @@
             <input type="submit">
         </form>
         <br>
+        {% if shifts %}
         <h1>Current Schedule</h1>
         <ul>
             {% for shift in shifts %}
             <li>
-                {{ shift["First Name"]}} {{ shift["Last Name"] }}
+                {{ shift["First Name"] }} {{ shift["Last Name"] }}
                 {{ shift["Date"] }}
                 {{ shift["Start Time"] }} to {{ shift["End Time"] }}
             </li>
             {% endfor %}
         </ul>
+        {% else %}
+        <p>No shifts have been scheduled yet.</p>
+        {% endif %}
         <a href="/">Back To Homepage</a>
     </body>
 </html>
