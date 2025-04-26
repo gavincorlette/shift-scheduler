@@ -29,8 +29,9 @@
                 {{ shift["First Name"] }} {{ shift["Last Name"] }}
                 {{ shift["Date"] }}
                 {{ shift["Start Time"] }} to {{ shift["End Time"] }}
+                
                 <a href="/edit-shift">Edit</a>
-                <a href="/delete-shift">Delete</a>
+                <a href="/delete-shift?id={{ shift['ID'] }}">Delete</a>
             </li>
             {% endfor %}
         </ul>

@@ -41,8 +41,12 @@ def edit_shift():
     return redirect(url_for("schedule"))
 
 # Function to delete shift
-@app.route("/delete-shift", methods=["POST"])
+@app.route("/delete-shift", methods=["GET"])
 def delete_shift():
+    shift_id = int(request.args.get("id"))
+    for shift in shift_list:
+        if shift["ID"] == shift_id:
+            shift_list.remove(shift)
     return redirect(url_for("schedule"))
 
 # Run application
