@@ -38,7 +38,37 @@ def add_shift():
 # Function to edit shift
 @app.route("/edit-shift", methods=["GET", "POST"])
 def edit_shift():
-    return redirect(url_for("schedule"))
+    # Set shift ID as the value from the query string in the URL
+    shift_id = int(request.args.get("id"))
+    # Check if method is GET request
+    if request.method == 'GET':
+        shift_to_edit = None
+        # Loop and find shift based on shift ID
+        for shift in shift_list:
+            if shift["ID"] == shift_id:
+                shift_to_edit = shift
+        return render_template("edit-shift.html", shift=shift_to_edit)
+
+    # Check if method is a POST request
+    if request.method == 'POST':
+        # Grab form data
+        fname = request.form.get("fname")
+        lname = request.form.get("lname")
+        # Convert date and time
+        date = datetime.strptime(request.form.get("date"), "%Y-%m-%d")
+        start = datetime.strptime(request.form.get("start"), "%H:%M")
+        end = datetime.strptime(request.form.get("end"), "%H:%M")
+
+        # Loop through and update data
+        for shift in shift_list:
+            if shift['ID'] == shift_id:
+                shift['First Name'] = fname
+                shift['Last Name'] = lname
+                # Format date and time
+                shift['Date'] = date.strftime("%b %d, %Y")
+                shift['Start Time'] = start.strftime("%I:%M %p")
+                shift['End Time'] = end.strftime("%I:%M %p")
+        return redirect(url_for("schedule"))
 
 # Function to delete shift
 @app.route("/delete-shift", methods=["GET"])

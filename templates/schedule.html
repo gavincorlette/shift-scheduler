@@ -9,12 +9,16 @@
         <form action="add-shift", method="POST">
             <label for="fname">First name:</label><br>
             <input type="text" id="fname" name="fname"><br>
+
             <label for="lname">Last name:</label><br>
             <input type="text" id="lname" name="lname"><br>
+
             <label for="date">Shift Date:</label><br>
             <input type="date" id="date" name="date"><br>
+
             <label for="start">Shift start:</label><br>
             <input type="time" id="start" name="start"><br>
+            
             <label for="end">Shift end:</label><br>
             <input type="time" id="end" name="end"><br>
             <br>
@@ -30,8 +34,8 @@
                 {{ shift["Date"] }}
                 {{ shift["Start Time"] }} to {{ shift["End Time"] }}
                 
-                <a href="/edit-shift">Edit</a>
-                <a href="/delete-shift?id={{ shift['ID'] }}">Delete</a>
+                <a href="/edit-shift?id={{ shift['ID'] }}"><button>Edit</button></a>
+                <a href="/delete-shift?id={{ shift['ID'] }}"><button>Delete</button></a>
             </li>
             {% endfor %}
         </ul>

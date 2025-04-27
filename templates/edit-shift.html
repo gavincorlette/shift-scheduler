@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head lang="en">
+        <meta charset="UTF-8">
+        <title>Edit Shift</title>
+    </head>
+    <body>
+        <h1>Edit A Shift</h1><br>
+        <form action="/edit-shift?id={{ shift['ID'] }}" method="POST">
+            <label for="fname">First name:</label><br>
+            <input type="text" id="fname" name="fname" value="{{ shift['First Name'] }}"><br>
+
+            <label for="lname">Last name:</label><br>
+            <input type="text" id="lname" name="lname" value="{{ shift['Last Name'] }}"><br>
+
+            <label for="date">Shift Date:</label><br>
+            <input type="date" id="date" name="date" value="{{ shift['Date'] }}"><br>
+            
+            <label for="start">Shift start:</label><br>
+            <input type="time" id="start" name="start" value="{{ shift['Start Time'] }}"><br>
+            
+            <label for="end">Shift end:</label><br>
+            <input type="time" id="end" name="end" value="{{ shift['End Time'] }}"><br>
+            <br>
+            <input type="submit" value="Update Shift">
+            <br>
+            <a href="/schedule">Back to Schedule</a>
+        </form>
+    </body>
+</html>
