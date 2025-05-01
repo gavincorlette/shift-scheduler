@@ -1,9 +1,27 @@
 from flask import Flask, request, redirect, render_template, url_for
 from datetime import datetime
+import json
+
+# JSON file to store shift data between refreshing and loading
+def read_file(file_path):
+    with open(file_path, 'r') as file:
+        data = json.load(file)
+    return data
+
+file_path = 'shifts.json'
+
+# Try method since JSON file is empty to start
+try:
+    shift_list = read_file(file_path)
+except FileNotFoundError:
+    shift_list = []
+
+# Method to write to JSON file
+def write_file(file_path, data):
+    with open(file_path, 'w') as file:
+        json.dump(data, file)
 
 app = Flask(__name__)
-
-shift_list = []
 
 # ID for shifts in order to delete or edit them
 next_id = 1
@@ -29,6 +47,7 @@ def add_shift():
     shift_end = datetime.strptime(request.form.get("end"), "%H:%M")
     my_dict = {"ID":next_id, "First Name":fname, "Last Name":lname, "Date":shift_date.strftime("%b %d, %Y"), "Start Time":shift_start.strftime("%I:%M %p"), "End Time":shift_end.strftime("%I:%M %p")}
     shift_list.append(my_dict)
+    write_file('shifts.json', shift_list)
     
     # Each time a shift is submitted, the ID increments
     next_id += 1
@@ -68,6 +87,9 @@ def edit_shift():
                 shift['Date'] = date.strftime("%b %d, %Y")
                 shift['Start Time'] = start.strftime("%I:%M %p")
                 shift['End Time'] = end.strftime("%I:%M %p")
+        
+        write_file('shifts.json', shift_list)
+
         return redirect(url_for("schedule"))
 
 # Function to delete shift
@@ -77,6 +99,9 @@ def delete_shift():
     for shift in shift_list:
         if shift["ID"] == shift_id:
             shift_list.remove(shift)
+    
+    write_file('shifts.json', shift_list)
+
     return redirect(url_for("schedule"))
 
 # Run application
