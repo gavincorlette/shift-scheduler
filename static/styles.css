@@ -1,0 +1,21 @@
+html {
+    background-color: #f2f2f2;
+}
+
+h1 {
+    text-align: center;
+}
+
+body {
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+}
+
+button {
+    background-color: navy;
+    color: #f2f2f2;
+}
+
+button:hover {
+
+} 
