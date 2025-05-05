@@ -4,29 +4,28 @@
         <meta charset="UTF-8">
         <title>Edit Shift</title>
         <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
-        <link href="https://fonts.google.com/specimen/Montserrat" rel="stylesheet">
     </head>
     <body>
-        <h1>Edit A Shift</h1><br>
+        <h1 class="other-headings">Edit A Shift</h1><br>
         <form action="/edit-shift?id={{ shift['ID'] }}" method="POST">
             <label for="fname">First name:</label><br>
-            <input type="text" id="fname" name="fname" value="{{ shift['First Name'] }}"><br>
+            <input type="text" id="fname" name="fname" value="{{ shift['First Name'] }}" required><br>
 
             <label for="lname">Last name:</label><br>
-            <input type="text" id="lname" name="lname" value="{{ shift['Last Name'] }}"><br>
+            <input type="text" id="lname" name="lname" value="{{ shift['Last Name'] }}" required><br>
 
             <label for="date">Shift Date:</label><br>
-            <input type="date" id="date" name="date" value="{{ shift['Date'] }}"><br>
+            <input type="date" id="date" name="date" value="{{ shift['Date'] }}" required><br>
             
             <label for="start">Shift start:</label><br>
-            <input type="time" id="start" name="start" value="{{ shift['Start Time'] }}"><br>
+            <input type="time" id="start" name="start" value="{{ shift['Start Time'] }}" required><br>
             
             <label for="end">Shift end:</label><br>
-            <input type="time" id="end" name="end" value="{{ shift['End Time'] }}"><br>
+            <input type="time" id="end" name="end" value="{{ shift['End Time'] }}" required><br>
             <br>
-            <input type="submit" value="Update Shift">
+            <button type="submit">Update Shift</button>
             <br>
-            <a href="/schedule">Back to Schedule</a>
         </form>
+        <a href="/schedule">Back to Schedule</a>
     </body>
 </html>

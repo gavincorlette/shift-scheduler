@@ -4,31 +4,30 @@
         <meta charset="UTF-8">
         <title>Schedule</title>
         <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
-        <link href="https://fonts.google.com/specimen/Montserrat" rel="stylesheet">
     </head>
     <body>
-        <h1>Add A Shift</h1><br>
+        <h1 class="other-headings">Add A Shift</h1><br>
         <form action="add-shift", method="POST">
-            <label for="fname">First name:</label><br>
-            <input type="text" id="fname" name="fname"><br>
+            <label for="fname">First Name:</label><br>
+            <input type="text" id="fname" name="fname" required><br>
 
-            <label for="lname">Last name:</label><br>
-            <input type="text" id="lname" name="lname"><br>
+            <label for="lname">Last Name:</label><br>
+            <input type="text" id="lname" name="lname" required><br>
 
             <label for="date">Shift Date:</label><br>
-            <input type="date" id="date" name="date"><br>
+            <input type="date" id="date" name="date" required><br>
 
-            <label for="start">Shift start:</label><br>
-            <input type="time" id="start" name="start"><br>
+            <label for="start">Shift Start:</label><br>
+            <input type="time" id="start" name="start" required><br>
             
-            <label for="end">Shift end:</label><br>
-            <input type="time" id="end" name="end"><br>
+            <label for="end">Shift End:</label><br>
+            <input type="time" id="end" name="end" required><br>
             <br>
             <button type="submit">Submit</button>
         </form>
         <br>
         {% if shifts %}
-        <h1>Current Schedule</h1>
+        <h1 class="other-headings">Current Schedule</h1>
         <ul>
             {% for shift in shifts %}
             <li>
